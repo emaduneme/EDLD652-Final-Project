@@ -13,7 +13,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(pacman)
-p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, ggplotly, ragg)
+p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg)
 
 
 here()
@@ -205,7 +205,7 @@ Column {data-width=400}
 ###  Nigerian Trust Religious and Traditional Leaders more
 
 ```{r, warning=FALSE}
- trust_plot
+ ggplotly(trust_plot)
 ```
 
 Column {data-width=200}
@@ -214,13 +214,13 @@ Column {data-width=200}
 ### Trust in President by State
 
 ```{r warning=FALSE}
-Trust_President_plot
+ ggplotly(Trust_President_plot)
 ```
 
 ### Trust in Religious Leaders by State
 
 ```{r warning=FALSE}
-Trust_Religious_Leaders_plot
+ ggplotly(Trust_Religious_Leaders_plot)
 ```
 
 Issue Perceptions 
