@@ -205,7 +205,7 @@ Column {data-width=400}
 ###  Nigerian Trust Religious and Traditional Leaders more
 
 ```{r, warning=FALSE}
- ggplotly(trust_plot)
+trust_plot
 ```
 
 Column {data-width=200}
@@ -214,13 +214,13 @@ Column {data-width=200}
 ### Trust in President by State
 
 ```{r warning=FALSE}
- ggplotly(Trust_President_plot)
+Trust_President_plot
 ```
 
 ### Trust in Religious Leaders by State
 
 ```{r warning=FALSE}
- ggplotly(Trust_Religious_Leaders_plot)
+Trust_Religious_Leaders_plot
 ```
 
 Issue Perceptions 
@@ -320,10 +320,10 @@ linetype = 1)) +
 Column {data-width=400}
 -----------------------------------------
 
-###  Average Ratings of How Well the Federal Govt is Handling the Following
+###  **Average Ratings of How Well the Federal Govt is Handling the Following**
 
 ```{r, warning=FALSE}
-issue_ratings
+ggplotly(issue_ratings)
 ```
 
 Media Use {data-orientation=rows}
