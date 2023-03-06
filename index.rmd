@@ -111,8 +111,10 @@ temp2 <- temp2 %>%
         y = "Frequency",
         caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
     
+
   
-  
+ 
+
 ```
 
 
@@ -324,6 +326,16 @@ issue_ratings <- j %>%
         plot.title=element_text(family="Times", face="bold", size=10),
         axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
         axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+issue_ratings_plotly <- j %>% 
+   rename("Average_Score" = "avg_score") %>% 
+  plot_ly(.,
+  x = ~Issues, 
+  y = ~Average_Score,
+  type = "bar",
+  marker = list(color = c('#e41a1c','#377eb8','#4daf4a',
+                          '#984ea3','#ff7f00','#ffff33','#a65628',
+                          '#f781bf','#999999')))%>% 
+layout(xaxis = list(categoryorder = "total descending")) 
 ```
 
 
@@ -333,7 +345,7 @@ Column {data-width=400}
 ###  **Average Ratings of How Well the Federal Govt is Handling the Following**
 
 ```{r, warning=FALSE}
-issue_ratings
+issue_ratings_plotly
 ```
 
 General Media Use {data-orientation=rows} 
@@ -488,6 +500,7 @@ media_by_state <- full_set2 %>%
         plot.title=element_text(family="Times", face="bold", size=10),
         axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
         axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+
 
 ```
 

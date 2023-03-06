@@ -40,6 +40,13 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/featherlight-1.3.5/featherlight.min.js"></script>
 <link href="site_libs/prism-1.4.1/prism.css" rel="stylesheet" />
 <script src="site_libs/prism-1.4.1/prism.js"></script>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <style type="text/css">
 /*
   CSS for flexdashboard.js' use of Sly(). The sizing/position of this CSS needs to be
@@ -177,8 +184,7 @@ html, body {
 <img class="mobile-figure" data-mobile-figure-id=fig1 src="index_files/figure-html/unnamed-chunk-2-1.mb.png" />
 <img class="mobile-figure" data-mobile-figure-id=fig2 src="index_files/figure-html/unnamed-chunk-4-1.mb.png" />
 <img class="mobile-figure" data-mobile-figure-id=fig3 src="index_files/figure-html/unnamed-chunk-5-1.mb.png" />
-<img class="mobile-figure" data-mobile-figure-id=fig4 src="index_files/figure-html/unnamed-chunk-7-1.mb.png" />
-<img class="mobile-figure" data-mobile-figure-id=fig5 src="index_files/figure-html/unnamed-chunk-9-1.mb.png" />
+<img class="mobile-figure" data-mobile-figure-id=fig4 src="index_files/figure-html/unnamed-chunk-9-1.mb.png" />
 <script type="text/javascript">
 
 
@@ -1927,7 +1933,8 @@ Following</strong></h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="576" data-figure-id=fig4 /></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8225ca4c14fcf5aff5ac" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-8225ca4c14fcf5aff5ac">{"x":{"visdat":{"28443f5eb66f":["function () ","plotlyVisDat"]},"cur_data":"28443f5eb66f","attrs":{"28443f5eb66f":{"x":{},"y":{},"marker":{"color":["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"categoryorder":"total descending","title":"Issues","type":"category","categoryarray":["Addressing Armed Extremism","Basic Health Services","Crime Reduction","Economy","Education","Electricity","Fighting Corruption","Job Creation","Living Conditions"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Average_Score"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Basic Health Services","Education","Addressing Armed Extremism","Crime Reduction","Economy","Fighting Corruption","Living Conditions","Electricity","Job Creation"],"y":[2.12,2.11,2.06,2.01,1.97,1.95,1.87,1.85,1.74],"marker":{"color":["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"],"line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1942,14 +1949,14 @@ class="section level3">
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="576" data-figure-id=fig5 /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="576" data-figure-id=fig4 /></p>
 </div>
 <div id="media-use-by-state" class="section level3">
 <h3>Media Use By State</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="final%20draft%20graphics/Average%20Media%20Use%20by%20State.png" width="576" data-figure-id=fig6 /></p>
+<p><img src="final%20draft%20graphics/Average%20Media%20Use%20by%20State.png" width="576" data-figure-id=fig5 /></p>
 </div>
 </div>
 </div>
@@ -1963,14 +1970,14 @@ data-navmenu="Media Use by State">
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="final%20draft%20graphics/Radio%20By%20State.png" width="576" data-figure-id=fig6 /></p>
+<p><img src="final%20draft%20graphics/Radio%20By%20State.png" width="576" data-figure-id=fig5 /></p>
 </div>
 <div id="tv-use-by-state" class="section level3">
 <h3>TV Use By State</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="final%20draft%20graphics/TV%20By%20State.png" width="576" data-figure-id=fig6 /></p>
+<p><img src="final%20draft%20graphics/TV%20By%20State.png" width="576" data-figure-id=fig5 /></p>
 </div>
 </div>
 </div>
@@ -1984,14 +1991,14 @@ data-navmenu="Media Use by State">
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="final%20draft%20graphics/Newspaper%20Use.png" width="576" data-figure-id=fig6 /></p>
+<p><img src="final%20draft%20graphics/Newspaper%20Use.png" width="576" data-figure-id=fig5 /></p>
 </div>
 <div id="social-media-use-by-state" class="section level3">
 <h3>Social Media Use By State</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="final%20draft%20graphics/Soc_Media%20by%20State.png" width="576" data-figure-id=fig6 /></p>
+<p><img src="final%20draft%20graphics/Soc_Media%20by%20State.png" width="576" data-figure-id=fig5 /></p>
 <p>```</p>
 </div>
 </div>
@@ -2127,8 +2134,10 @@ temp2 &lt;- temp2 %&gt;%
         y = "Frequency",
         caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
     
+
   
-  
+ 
+
 ```
 
 
@@ -2340,6 +2349,16 @@ issue_ratings &lt;- j %&gt;%
         plot.title=element_text(family="Times", face="bold", size=10),
         axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
         axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+issue_ratings_plotly &lt;- j %&gt;% 
+   rename("Average_Score" = "avg_score") %&gt;% 
+  plot_ly(.,
+  x = ~Issues, 
+  y = ~Average_Score,
+  type = "bar",
+  marker = list(color = c('#e41a1c','#377eb8','#4daf4a',
+                          '#984ea3','#ff7f00','#ffff33','#a65628',
+                          '#f781bf','#999999')))%&gt;% 
+layout(xaxis = list(categoryorder = "total descending")) 
 ```
 
 
@@ -2349,7 +2368,7 @@ Column {data-width=400}
 ###  **Average Ratings of How Well the Federal Govt is Handling the Following**
 
 ```{r, warning=FALSE}
-issue_ratings
+issue_ratings_plotly
 ```
 
 General Media Use {data-orientation=rows} 
@@ -2504,6 +2523,7 @@ media_by_state &lt;- full_set2 %&gt;%
         plot.title=element_text(family="Times", face="bold", size=10),
         axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
         axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+
 
 ```
 
