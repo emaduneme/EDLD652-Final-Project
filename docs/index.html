@@ -174,7 +174,7 @@ html, body {
 </div><!--/.container-->
 </div><!--/.navbar-->
 
-<img class="mobile-figure" data-mobile-figure-id=fig1 src="index_files/figure-html/unnamed-chunk-3-1.mb.png" />
+<img class="mobile-figure" data-mobile-figure-id=fig1 src="index_files/figure-html/unnamed-chunk-2-1.mb.png" />
 <img class="mobile-figure" data-mobile-figure-id=fig2 src="index_files/figure-html/unnamed-chunk-4-1.mb.png" />
 <img class="mobile-figure" data-mobile-figure-id=fig3 src="index_files/figure-html/unnamed-chunk-5-1.mb.png" />
 <img class="mobile-figure" data-mobile-figure-id=fig4 src="index_files/figure-html/unnamed-chunk-7-1.mb.png" />
@@ -1867,9 +1867,6 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
 <div id="about-data-and-visualization" class="section level1 sidebar">
 <h1 class="sidebar">About Data and Visualization</h1>
 <p>The <code>afrobarometer_ngr</code> data is a publicly available data
@@ -1894,11 +1891,14 @@ class="section level3">
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="576" data-figure-id=fig1 /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="576" data-figure-id=fig1 /></p>
 </div>
 </div>
 <div id="column-1" class="section level2" data-width="200">
 <h2>Column</h2>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
 <div id="trust-in-president-by-state" class="section level3">
 <h3>Trust in President by State</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
@@ -1922,8 +1922,8 @@ class="section level3">
 <div
 id="average-ratings-of-how-well-the-federal-govt-is-handling-the-following"
 class="section level3">
-<h3>Average Ratings of How Well the Federal Govt is Handling the
-Following</h3>
+<h3><strong>Average Ratings of How Well the Federal Govt is Handling the
+Following</strong></h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
@@ -1931,12 +1931,14 @@ Following</h3>
 </div>
 </div>
 </div>
-<div id="media-use" class="section level1" data-orientation="rows">
-<h1>Media Use</h1>
+<div id="general-media-use" class="section level1"
+data-orientation="rows">
+<h1>General Media Use</h1>
 <div id="row" class="section level2" data-height="400">
 <h2>Row</h2>
-<div id="general-media-use" class="section level3">
-<h3>General Media Use</h3>
+<div id="radio-remains-the-main-source-of-news-in-nigeria"
+class="section level3">
+<h3>Radio Remains the Main Source of News in Nigeria</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
@@ -1948,6 +1950,49 @@ Following</h3>
 
 </div>
 <p><img src="final%20draft%20graphics/Average%20Media%20Use%20by%20State.png" width="576" data-figure-id=fig6 /></p>
+</div>
+</div>
+</div>
+<div id="radio-tv" class="section level1"
+data-navmenu="Media Use by State">
+<h1>Radio &amp; TV</h1>
+<div id="row-1" class="section level2" data-height="400">
+<h2>Row</h2>
+<div id="radio-use-by-state" class="section level3">
+<h3>Radio Use By State</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img src="final%20draft%20graphics/Radio%20By%20State.png" width="576" data-figure-id=fig6 /></p>
+</div>
+<div id="tv-use-by-state" class="section level3">
+<h3>TV Use By State</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img src="final%20draft%20graphics/TV%20By%20State.png" width="576" data-figure-id=fig6 /></p>
+</div>
+</div>
+</div>
+<div id="newspaper-social-media" class="section level1"
+data-navmenu="Media Use by State">
+<h1>Newspaper &amp; Social Media</h1>
+<div id="row-2" class="section level2" data-height="200">
+<h2>Row</h2>
+<div id="newspaper-use-by-state" class="section level3">
+<h3>Newspaper Use By State</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img src="final%20draft%20graphics/Newspaper%20Use.png" width="576" data-figure-id=fig6 /></p>
+</div>
+<div id="social-media-use-by-state" class="section level3">
+<h3>Social Media Use By State</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<p><img src="final%20draft%20graphics/Soc_Media%20by%20State.png" width="576" data-figure-id=fig6 /></p>
+<p>```</p>
 </div>
 </div>
 </div>
@@ -1982,9 +2027,9 @@ output:
     
 ---
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, include=FALSE}
 library(pacman)
-p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, ggplotly, ragg)
+p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts)
 
 
 here()
@@ -2003,7 +2048,7 @@ selected_afrob &lt;-  selected_afrob %&gt;%
 ```
 
 
-```{r, trust, include=FALSE}
+```{r, trust, warning=FALSE, include=FALSE}
 ## Recode Variables Trust
 
 #   Missing    Not at all Just a little      Somewhat        A lot      Don’t know 
@@ -2067,8 +2112,12 @@ temp2 &lt;- temp2 %&gt;%
    coord_flip() +
     scale_fill_manual(values = c('#8da0cb','#fc8d62','#66c2a5'),
                       labels=c("Not at all/ A little", "Somewhat", "Alot")) +
-    theme_bw() +
-     theme(axis.text.y = element_text(size = 10, color = "grey10"),
+    scale_y_continuous(labels = scales::percent) +
+    theme_void() +
+     theme(axis.line = element_blank(),
+           panel.background = element_blank(),
+           axis.ticks = element_blank(),
+           axis.text.y = element_text(size = 10, family="Times", face="bold", hjust = 1, color = "grey10"),
            axis.text.x = element_text(size = 10, color = "grey10"),
         panel.grid.major.x = element_line(color = "grey70",
                                           size = 1.0,
@@ -2076,12 +2125,37 @@ temp2 &lt;- temp2 %&gt;%
         legend.title=element_blank()) +
      labs(x = "",
         y = "Frequency",
-        caption = "Data from Afrobarometer 2022 Round 8 Nigeria") +
-    theme(plot.title=element_text(family="Times", face="bold", size=10),
-          axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
-          axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+        caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
+    
+  
+  
 ```
 
+
+
+About Data and Visualization {.sidebar}
+======================================
+
+The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries.
+
+Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria. 
+
+
+Trust in Institutions
+=====================================  
+
+
+Column {data-width=400}
+-----------------------------------------
+
+###  Nigerian Trust Religious and Traditional Leaders more
+
+```{r, warning=FALSE}
+trust_plot
+```
+
+Column {data-width=200}
+-----------------------------------------
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## trust by States
 
@@ -2157,30 +2231,6 @@ ggplot() +
   theme_void()
 
 ```
-
-About Data and Visualization {.sidebar}
-======================================
-
-The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries.
-
-Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria. 
-
-
-Trust in Institutions
-=====================================  
-
-
-Column {data-width=400}
------------------------------------------
-
-###  Nigerian Trust Religious and Traditional Leaders more
-
-```{r, warning=FALSE}
- trust_plot
-```
-
-Column {data-width=200}
------------------------------------------
 
 ### Trust in President by State
 
@@ -2274,10 +2324,15 @@ issue_ratings &lt;- j %&gt;%
   coord_flip() +
   geom_text(aes(label = avg_score),  hjust = -0.5) +
   scale_fill_manual(values = c("#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888")) +
-  theme_classic() +
-  theme(panel.grid.major.x = element_line(color = "grey90",
-size = 0.5,
-linetype = 1)) +
+   theme_void() +
+     theme(axis.line = element_blank(),
+           panel.background = element_blank(),
+           axis.ticks = element_blank(),
+           axis.text.y = element_text(size = 10, family="Times", 
+                                      face="bold", hjust = 1, color = "grey10"),
+           panel.grid.major.x = element_line(color = "grey90",
+                                             size = 0.5,
+                                             linetype = 1)) +
   labs(title = "",
     x = "", 
           y = "Average Ratings (1 = Very Badly, 4 = Very Well)" ) +
@@ -2291,16 +2346,16 @@ linetype = 1)) +
 Column {data-width=400}
 -----------------------------------------
 
-###  Average Ratings of How Well the Federal Govt is Handling the Following
+###  **Average Ratings of How Well the Federal Govt is Handling the Following**
 
 ```{r, warning=FALSE}
 issue_ratings
 ```
 
-Media Use {data-orientation=rows}
+General Media Use {data-orientation=rows} 
 =====================================  
 
-```{r, include=FALSE}
+```{r,warning=FALSE, include=FALSE}
 ## As previously noted, a subset of media use columns, but but first, I changed the name
 selected_afrob &lt;-  selected_afrob %&gt;% 
   mutate(states = REGION)
@@ -2432,11 +2487,17 @@ media_by_state &lt;- full_set2 %&gt;%
   scale_fill_OkabeIto(name = "media_type") +
     coord_flip() +
     theme_classic() +
-  theme(legend.position = "none",
-        panel.grid.major.x = element_line(color = "grey90",
+     theme(axis.line = element_blank(),
+           panel.background = element_blank(),
+           axis.ticks = element_blank(),
+           axis.text.y = element_text(size = 10, family="Times", 
+                                      face="bold", hjust = 1, 
+                                      color = "grey10"),
+           legend.position = "none",
+           panel.grid.major.x = element_line(color = "grey90",
                                           size = 0.5,
                                           linetype = 1)) +
-  labs(title = "Radio Remains the Main Source of News in Nigeria",
+  labs(title = "",
        x = "", 
           y = "Average Ratings (1 = Never, 5 = Every day)") +
    theme(legend.position="none",
@@ -2449,17 +2510,77 @@ media_by_state &lt;- full_set2 %&gt;%
 Row {data-height=400}
 -----------------------------------------
 
-### General Media Use 
+### Radio Remains the Main Source of News in Nigeria
 
 ```{r warning=FALSE}
 media_by_state
 
 ```
 
+
+```{r, warning=FALSE, echo=TRUE, eval=FALSE, include=FALSE}
+## Just for Tableau: Attaching geographic data to media usage in order to create graphs on Tableau
+
+tablaeu &lt;- full_set %&gt;% 
+   add_column(Country = "Nigeria") %&gt;% 
+ rename(Social_Media = "Social Media") %&gt;% 
+ select(1, 6:9, 11) %&gt;%
+   pivot_longer(
+    cols = c(2:5),
+    names_to = "media_type",
+    values_to = "ratings") %&gt;% 
+  mutate(ratings_c = as.character(ratings))
+
+```
+
+
+
 ### Media Use By State
 
 ```{r warning=FALSE}
 knitr::include_graphics(here( "final draft graphics", "Average Media Use by State.png"))
+```
+
+
+Radio &amp; TV {data-navmenu="Media Use by State"}
+=====================================  
+
+Row {data-height=400}
+-----------------------------------------
+
+### Radio Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Radio By State.png"))
+```
+
+### TV Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "TV By State.png"))
+```
+
+
+Newspaper &amp; Social Media {data-navmenu="Media Use by State"}
+=====================================  
+
+Row {data-height=200}
+-----------------------------------------
+
+### Newspaper Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Newspaper Use.png"))
+```
+
+
+### Social Media Use By State
+
+```{r, warning=FALSE}
+knitr::include_graphics(here( "final draft graphics", "Soc_Media by State.png"))
+```
+
+
 ```
 </code></pre>
 </div>
