@@ -12,7 +12,7 @@ output:
 
 ```{r setup, warning=FALSE, include=FALSE}
 library(pacman)
-p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts)
+p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts, ggiraph)
 
 
 
@@ -30,6 +30,44 @@ selected_afrob <-  afrobarometer_ngr %>%
 selected_afrob <-  selected_afrob %>% 
   mutate(states = REGION)
 ```
+
+
+
+# Background {data-orientation=rows data-icon="fa-info-circle"}
+
+
+ 
+ About Data {.sidebar}
+--------------------------------------------------
+**Background**
+
+The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries. Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria.
+
+Row {data-width=400}  {.tabset}
+-----------------------------------------------------------------------
+### Title {.no-title}
+
+```{r,  fig.width= 6.5, fig.height= 7, fig.align='center'}
+knitr::include_graphics(here( "final draft graphics", "perception_image.png"))
+```
+
+
+### **Guides to Reading Maps (37 States of Nigeria)** {.no-title}
+
+**Guides to Maps (37 States of Nigeria)**
+```{r, warning=FALSE}
+gg <- ggplot(NGA1)+
+ geom_sf() +
+  theme_void() +
+   geom_sf_text_interactive(aes(label = NAME_1, tooltip = NAME_1))
+gg
+
+
+```
+
+
+
+# Trust in Institutions {data-icon="ion-android-checkmark-circle"}
 
 ```{r, trust, warning=FALSE, include=FALSE}
 ## Recode Variables Trust
@@ -110,50 +148,9 @@ temp2 <- temp2 %>%
         y = "Frequency",
         caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
     
-
-  
  
 
 ```
-
-# Background {data-icon="fa-info-circle"}
-
-
-
-Sidebar {.sidebar}
--------------------------------
-**Background**
-
-The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries.
-
-Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria.
-
-
-
-Column {data-height=600}
------------------------------------------------------------------------
-### Title {.no-title}
-
-```{r,  fig.width= 3, fig.height= 2.5, fig.align='right'}
-knitr::include_graphics(here( "final draft graphics", "perception_image.jpg"))
-```
-
-Column {data-height=600}
------------------------------------------------------------------------
-### Title {.no-title}
-
-**Guides to Maps (37 States of Nigeria)**
-```{r}
-ggplot(NGA1)+
- geom_sf()+
-  geom_sf_label(aes(label = NAME_1)) +
-  theme_void()
-```
-
-
-
-# Trust in Institutions {data-icon="ion-android-checkmark-circle"}
-
 
 ## Trust {.sidebar}
 
@@ -224,7 +221,6 @@ Trust_President_plot <- Trust_President %>%
   mutate(prop_score = n/sum(n, na.rm = T)) %>% 
 ggplot() +
   geom_sf(aes(fill = prop_score))+
-  geom_sf_label(aes(label = NAME_1)) +
   scale_fill_gradient(name= "% of Trust Scores",
     low = "#e0f3db",
   high = "#43a2ca",
@@ -241,8 +237,6 @@ ggplot() +
         y = "",
         caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
  
- 
-  
 
 
   
@@ -250,7 +244,6 @@ Trust_Religious_Leaders_plot <-  Trust_Religious_Leaders %>%
   mutate(prop_score = n/sum(n, na.rm = T)) %>% 
 ggplot() +
   geom_sf(aes(fill = prop_score))+
-  geom_sf_label(aes(label = NAME_1)) +
  scale_fill_gradient(name= "% of Trust Scores",
                      low = "#fff7bc",
                      high = "#d95f0e",
@@ -260,7 +253,12 @@ ggplot() +
                      aesthetics = "fill",
    breaks = c(0.03, 0.06,0.09),
   labels = c("Low Trust","Mid Trust",  "High Trust")) +
-  theme_void()
+  theme_void() +
+   labs(title = "Trust in the Religious Leaders",
+        subtitle = "Share of Nigerians who say they they trust A lot",
+        x = "",
+        y = "",
+        caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
 
 ```
 
