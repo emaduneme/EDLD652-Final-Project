@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: 
       version: 4
-      bootswatch: minty
+      bootswatch: litera
     orientation: columns
     vertical_layout: fill
     source_code: embed
@@ -115,17 +115,57 @@ temp2 <- temp2 %>%
 
 ```
 
+# Background {data-icon="fa-info-circle"}
 
- Trust in Institutions
-=======================================================
+
+
+Sidebar {.sidebar}
+-------------------------------
+**Background**
+
+The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries.
+
+Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria.
+
+
+
+Column {data-height=600}
+-----------------------------------------------------------------------
+### Title {.no-title}
+
+```{r,  fig.width= 3, fig.height= 2.5, fig.align='right'}
+knitr::include_graphics(here( "final draft graphics", "perception_image.jpg"))
+```
+
+Column {data-height=600}
+-----------------------------------------------------------------------
+### Title {.no-title}
+
+**Guides to Maps (37 States of Nigeria)**
+```{r}
+ggplot(NGA1)+
+ geom_sf()+
+  geom_sf_label(aes(label = NAME_1)) +
+  theme_void()
+```
+
+
+
+# Trust in Institutions {data-icon="ion-android-checkmark-circle"}
+
 
 ## Trust {.sidebar}
 
-**Overall Trust** The plots in this page explored the level of trust Nigerians had in different institutions. Overall, Religious and Traditional leaders are the most trusted group of people. The National Assembly, which is the main legislative body in the country as well as the Police were the least trusted groups in Nigeria.
+**Overall Trust** 
 
-**Trust in President/ Religious Leaders by State** Here is a map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
+The plots in this page explored the level of trust Nigerians had in different institutions. Overall, Religious and Traditional leaders are the most trusted group of people. The National Assembly, which is the main legislative body in the country as well as the Police were the least trusted groups in Nigeria.
+
+**Trust in President/ Religious Leaders by State** 
+
+Religious leaders are the most trusted groups in Nigeria. The map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
 
 ## Column {data-width="400"}
+
 
 ### Nigerian Trust Religious and Traditional Leaders more
 
@@ -235,12 +275,14 @@ Trust_President_plot
 Trust_Religious_Leaders_plot
 ```
 
-# Issue Perceptions
+# Issue Perceptions {data-icon="ion-ios-briefcase-outline"}
 
 ## Issue Perceptions {.sidebar}
 --------------------------------------
 
-**Perception of Varied Issues in Nigeria** The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
+**Perception of Varied Issues in Nigeria** 
+
+The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
 
 
 ```{r,  include=FALSE}
@@ -342,11 +384,12 @@ issue_ratings_plotly
 ```
 
 
-# General Media Use {data-orientation="rows"}
+# General Media Use {data-orientation="rows" data-icon="ion-android-desktop"}
 
 ## Trust {.sidebar}
 
 **General Media Use**
+
 Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers. 
 
 
