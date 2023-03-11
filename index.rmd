@@ -12,9 +12,10 @@ output:
 
 ```{r setup, warning=FALSE, include=FALSE}
 library(pacman)
-p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts, ggiraph, tmap)
-
-
+p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor,
+       expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats,
+       treemap, flexdashboard, plotly, ragg, extrafonts, ggiraph, tmap,
+     htmlwidgets, packcircles)
 
 
 ```
@@ -428,7 +429,7 @@ issue_ratings_plotly
 ```
 
 
-# General Media Use {data-orientation="rows" data-icon="ion-android-desktop"}
+# General Media Use {data-icon="ion-android-desktop"}
 
 ## Trust {.sidebar}
 
@@ -592,7 +593,7 @@ media_by_state <- full_set2 %>%
 
 ```
 
-## Row {data-height="400"}
+## Row {data-height="300"}
 
 ### Radio Remains the Main Source of News in Nigeria
 
@@ -603,6 +604,8 @@ media_by_state
 
 ```{r, warning=FALSE, echo=TRUE, eval=FALSE, include=FALSE}
 ## Just for Tableau: Attaching geographic data to media usage in order to create graphs on Tableau
+
+
 
 tablaeu <- full_set %>% 
    add_column(Country = "Nigeria") %>% 
@@ -616,33 +619,41 @@ tablaeu <- full_set %>%
 
 
 tablaeu2 <- tablaeu %>%
-  mutate(Ratings = as.numeric(ratings_c),
-         NAME_1 = as.character(state)) %>% 
-  select(3, 6, 7)
+  mutate(NAME_1 = as.character(state))
+
 Media_Use_State <- left_join(NGA1,tablaeu2)
 class(tablaeu2$NAME_1)
 
-tmap_mode("view")
-Media_Use_State %>%  
-  tm_shape() +
-   tm_text("NAME_1", size = 0.5) +
-  tm_polygons("Ratings",
-              palette = "Purples",
-              border.col = "#333333", 
-              style= 'cont',
-              showNA = NA,
-              colorNA = "grey90",
-              interactive = TRUE,
-              lwd = 0.3,
-              title=c("Proportions"))+
-    #tm_text("NAME_1", size = 0.5) +
-  tm_layout(legend.outside = TRUE) 
-   
+### Tree map
+  treemap_media <- full_set %>% 
+  mutate(NAME_1 = as.character(state)) %>% 
+      select(11, 6:10)
+  
+  # make it interactive ("rootname" becomes the title of the plot):
+  p <- treemap( treemap_media,
+            index="NAME_1",
+            vSize="Radio",
+            type="index",
+           border.col="white",  
+           border.lwds=c(1,1)
+            )
 
 ```
 
-### Media Use By State
+## Column {data-width="400"}
 
-```{r warning=FALSE}
-knitr::include_graphics(here( "final draft graphics", "Average Media Use by State.png"))
+### Ogun State has the highest radio use, followed by Kaduna and Gombe State
+
+```{r warning=FALSE, eval=TRUE}
+
+knitr::include_graphics(here( "final draft graphics", "Radio By State.png"))
+
+```
+
+### Internet use is highest in Federal Captial Territory, the capital of Nigera, followed by Borno State 
+
+```{r warning=FALSE, eval=TRUE}
+
+knitr::include_graphics(here( "final draft graphics", "internet use treemap.png"))
+
 ```
