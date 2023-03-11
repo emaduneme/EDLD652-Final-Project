@@ -12,7 +12,7 @@ output:
 
 ```{r setup, warning=FALSE, include=FALSE}
 library(pacman)
-p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts, ggiraph)
+p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor, expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats, treemap, flexdashboard, treemap, plotly, ragg, extrafonts, ggiraph, tmap)
 
 
 
@@ -43,7 +43,7 @@ selected_afrob <-  selected_afrob %>%
 
 The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries. Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria.
 
-Row {data-width=400}  {.tabset}
+Row {data-width=400} 
 -----------------------------------------------------------------------
 ### Title {.no-title}
 
@@ -51,19 +51,6 @@ Row {data-width=400}  {.tabset}
 knitr::include_graphics(here( "final draft graphics", "perception_image.png"))
 ```
 
-
-### **Guides to Reading Maps (37 States of Nigeria)** {.no-title}
-
-**Guides to Maps (37 States of Nigeria)**
-```{r, warning=FALSE}
-gg <- ggplot(NGA1)+
- geom_sf() +
-  theme_void() +
-   geom_sf_text_interactive(aes(label = NAME_1, tooltip = NAME_1))
-gg
-
-
-```
 
 
 
@@ -140,15 +127,18 @@ temp2 <- temp2 %>%
            axis.ticks = element_blank(),
            axis.text.y = element_text(size = 10, family="Times", face="bold", hjust = 1, color = "grey10"),
            axis.text.x = element_text(size = 10, color = "grey10"),
-        panel.grid.major.x = element_line(color = "grey70",
-                                          size = 1.0,
-                                          linetype = 3),
+        panel.grid.major.x = element_blank(),
         legend.title=element_blank()) +
      labs(x = "",
         y = "Frequency",
-        caption = "Data from Afrobarometer 2022 Round 8 Nigeria")
+        caption = "Question: How much do you trust each of the following:")
     
+  ## Just trying out plot_ly here 
+percent <- function(x, digits = 2, format = "f", ...) {      # Create user-defined function
+  paste0(formatC(x * 100, format = format, digits = digits, ...), "%")
+}
  
+    
 
 ```
 
@@ -162,16 +152,36 @@ The plots in this page explored the level of trust Nigerians had in different in
 
 Religious leaders are the most trusted groups in Nigeria. The map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
 
-## Column {data-width="400"}
+## Column {data-width="300"}
 
 
 ### Nigerian Trust Religious and Traditional Leaders more
 
 ```{r, warning=FALSE}
 trust_plot
+
 ```
 
-## Column {data-width="200"}
+```{r, echo=FALSE, eval=FALSE, include=FALSE}
+
+
+Trust_Manipulation %>% 
+    plot_ly(.,
+  x = ~trust_scores_recd,
+  y = ~ institutions,
+  orientation = 'v',
+  type = "bar",
+  color = ~as.factor(trust_scores_recd),
+  labels = ~percent(trust_scores_recd/sum(trust_scores_recd))) %>% 
+layout(yaxis = list(categoryorder = "total ascending"),
+      barmode = 'stack',
+       xaxis = list(title = ""),
+        yaxis = list(title ="Average Score"))
+
+```
+
+
+## Column {data-width="300"}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## trust by States
@@ -239,7 +249,7 @@ ggplot() +
  
 
 
-  
+ ## Ggplot but did not use this.  
 Trust_Religious_Leaders_plot <-  Trust_Religious_Leaders %>% 
   mutate(prop_score = n/sum(n, na.rm = T)) %>% 
 ggplot() +
@@ -262,16 +272,50 @@ ggplot() +
 
 ```
 
-### Trust in President by State
+### Northern States Trust the President more
 
 ```{r warning=FALSE}
-Trust_President_plot
+
+tmap_mode("view")
+ Trust_President %>%  
+  mutate(proportion = n/sum(n, na.rm = T)) %>%  
+  tm_shape() +
+   tm_text("NAME_1", size = 0.5) +
+  tm_polygons("proportion",
+              palette = "Purples",
+              border.col = "#333333", 
+              style= 'cont',
+              showNA = NA,
+              colorNA = "grey90",
+              interactive = TRUE,
+              lwd = 0.3,
+              title=c("Proportions"))+
+    #tm_text("NAME_1", size = 0.5) +
+  tm_layout(legend.outside = TRUE) 
+   
+
+
 ```
 
-### Trust in Religious Leaders by State
+### Nigerians in Kano State trust Religious Leaders more
 
 ```{r warning=FALSE}
-Trust_Religious_Leaders_plot
+## Trust_Religious_Leaders_plot
+
+
+tmap_mode("view")
+Trust_Religious_Leaders %>% 
+    mutate(prop_score = (n/sum(n, na.rm = T))) %>%  
+  tm_shape() +
+  tm_polygons("prop_score",
+              style= 'cont',
+              border.col = "#666666",
+              colorNA = "white",
+              lwd = 0.3,
+               lwd = 0.3,
+              title=c("Proportions")) +
+    tm_text("NAME_1", size = 0.5) +
+  tm_layout(legend.outside = TRUE)
 ```
 
 # Issue Perceptions {data-icon="ion-ios-briefcase-outline"}
@@ -364,11 +408,12 @@ issue_ratings_plotly <- j %>%
   x = ~Issues, 
   y = ~Average_Score,
   type = "bar",
-  marker = list(color = cbl))%>% 
-layout(xaxis = list(categoryorder = "total descending"),
-       yaxis = list( range=c(1,5)),
-       xaxis = list(title = ""),
-        yaxis = list(title ="Average Score"))
+  marker = list(color = cbl)) %>% 
+layout(xaxis = list(categoryorder = "total descending",
+                    title = ""),
+       yaxis = list(range=c(1,5), 
+                     title ="Average Score"))
+       
 
 
 
@@ -376,7 +421,7 @@ layout(xaxis = list(categoryorder = "total descending"),
 
 ## Column {data-width="400"}
 
-### **Average Ratings of How Well the Federal Govt is Handling the Following**
+### **Nigerians say the Government is Handling Basic Health Service better and Job Creation worse**
 
 ```{r}
 issue_ratings_plotly
@@ -537,7 +582,8 @@ media_by_state <- full_set2 %>%
                                           linetype = 1)) +
   labs(title = "",
        x = "", 
-          y = "Average Ratings (1 = Never, 5 = Every day)") +
+          y = "Average Ratings (1 = Never, 5 = Every day)",
+       caption = "How often do you get news from the following sources") +
    theme(legend.position="none",
         plot.title=element_text(family="Times", face="bold", size=10),
         axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
@@ -567,6 +613,31 @@ tablaeu <- full_set %>%
     names_to = "media_type",
     values_to = "ratings") %>% 
   mutate(ratings_c = as.character(ratings))
+
+
+tablaeu2 <- tablaeu %>%
+  mutate(Ratings = as.numeric(ratings_c),
+         NAME_1 = as.character(state)) %>% 
+  select(3, 6, 7)
+Media_Use_State <- left_join(NGA1,tablaeu2)
+class(tablaeu2$NAME_1)
+
+tmap_mode("view")
+Media_Use_State %>%  
+  tm_shape() +
+   tm_text("NAME_1", size = 0.5) +
+  tm_polygons("Ratings",
+              palette = "Purples",
+              border.col = "#333333", 
+              style= 'cont',
+              showNA = NA,
+              colorNA = "grey90",
+              interactive = TRUE,
+              lwd = 0.3,
+              title=c("Proportions"))+
+    #tm_text("NAME_1", size = 0.5) +
+  tm_layout(legend.outside = TRUE) 
+   
 
 ```
 
