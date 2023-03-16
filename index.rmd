@@ -15,7 +15,7 @@ library(pacman)
 p_load(tidyverse, esquisse, dlookr, rio, here, readr, tidytext, knitr, janitor,
        expss, hrbrthemes, flextable, labelled, sjlabelled, colorblindr, forcats,
        treemap, flexdashboard, plotly, ragg, extrafonts, ggiraph, tmap,
-     htmlwidgets, packcircles)
+     htmlwidgets)
 
 
 ```
@@ -163,23 +163,6 @@ trust_plot
 
 ```
 
-```{r, echo=FALSE, eval=FALSE, include=FALSE}
-
-
-Trust_Manipulation %>% 
-    plot_ly(.,
-  x = ~trust_scores_recd,
-  y = ~ institutions,
-  orientation = 'v',
-  type = "bar",
-  color = ~as.factor(trust_scores_recd),
-  labels = ~percent(trust_scores_recd/sum(trust_scores_recd))) %>% 
-layout(yaxis = list(categoryorder = "total ascending"),
-      barmode = 'stack',
-       xaxis = list(title = ""),
-        yaxis = list(title ="Average Score"))
-
-```
 
 
 ## Column {data-width="300"}
@@ -273,13 +256,13 @@ ggplot() +
 
 ```
 
-### Northern States Trust the President more
+### Northern States Trust the President More
 
 ```{r warning=FALSE}
 
 tmap_mode("view")
  Trust_President %>%  
-  mutate(proportion = n/sum(n, na.rm = T)) %>%  
+  mutate(proportion = n/sum(n, na.rm = T))  %>% 
   tm_shape() +
    tm_text("NAME_1", size = 0.5) +
   tm_polygons("proportion",
@@ -292,13 +275,13 @@ tmap_mode("view")
               lwd = 0.3,
               title=c("Proportions"))+
     #tm_text("NAME_1", size = 0.5) +
-  tm_layout(legend.outside = TRUE) 
+  tm_layout(legend.outside = TRUE)
    
 
 
 ```
 
-### Nigerians in Kano State trust Religious Leaders more
+### Nigerians in Kano State Trust Religious Leaders More
 
 ```{r warning=FALSE}
 ## Trust_Religious_Leaders_plot
@@ -414,10 +397,7 @@ layout(xaxis = list(categoryorder = "total descending",
                     title = ""),
        yaxis = list(range=c(1,5), 
                      title ="Average Score"))
-       
-
-
-
+      
 ```
 
 ## Column {data-width="400"}
