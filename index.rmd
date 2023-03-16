@@ -32,28 +32,21 @@ selected_afrob <-  selected_afrob %>%
   mutate(states = REGION)
 ```
 
+# Background {data-orientation="rows" data-icon="fa-info-circle"}
 
+## About Data {.sidebar}
 
-# Background {data-orientation=rows data-icon="fa-info-circle"}
-
-
- 
- About Data {.sidebar}
---------------------------------------------------
 **Background**
 
 The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarometer**](https://www.afrobarometer.org/data/), an non-profit African survey organization based in Ghana. According to their website, they "conducts public attitude surveys on democracy, governance, the economy, and society." The data set is part of their many data sets from African countries. Specifically, the `afrobarometer_ngr` data set is a 2022 8th round comprehensive survey on several topics from perceptions of democracy, elections and the media to attitudes towards different institutions in Nigeria.
 
-Row {data-width=400} 
------------------------------------------------------------------------
+## Row {data-width="400"}
+
 ### Title {.no-title}
 
 ```{r,  fig.width= 6.5, fig.height= 7, fig.align='center'}
 knitr::include_graphics(here( "final draft graphics", "perception_image.png"))
 ```
-
-
-
 
 # Trust in Institutions {data-icon="ion-android-checkmark-circle"}
 
@@ -145,16 +138,15 @@ percent <- function(x, digits = 2, format = "f", ...) {      # Create user-defin
 
 ## Trust {.sidebar}
 
-**Overall Trust** 
+**Overall Trust**
 
 The plots in this page explored the level of trust Nigerians had in different institutions. Overall, Religious and Traditional leaders are the most trusted group of people. The National Assembly, which is the main legislative body in the country as well as the Police were the least trusted groups in Nigeria.
 
-**Trust in President/ Religious Leaders by State** 
+**Trust in President/ Religious Leaders by State**
 
 Religious leaders are the most trusted groups in Nigeria. The map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
 
 ## Column {data-width="300"}
-
 
 ### Nigerian Trust Religious and Traditional Leaders more
 
@@ -162,8 +154,6 @@ Religious leaders are the most trusted groups in Nigeria. The map showing states
 trust_plot
 
 ```
-
-
 
 ## Column {data-width="300"}
 
@@ -304,13 +294,11 @@ Trust_Religious_Leaders %>%
 
 # Issue Perceptions {data-icon="ion-ios-briefcase-outline"}
 
-## Issue Perceptions {.sidebar}
---------------------------------------
+## \## Issue Perceptions {.sidebar}
 
-**Perception of Varied Issues in Nigeria** 
+**Perception of Varied Issues in Nigeria**
 
 The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
-
 
 ```{r,  include=FALSE}
 ## First I created a subset of data that included all the issues interest.
@@ -408,16 +396,13 @@ layout(xaxis = list(categoryorder = "total descending",
 issue_ratings_plotly
 ```
 
-
 # General Media Use {data-icon="ion-android-desktop"}
 
 ## Trust {.sidebar}
 
 **General Media Use**
 
-Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers. 
-
-
+Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers.
 
 ```{r,warning=FALSE, include=FALSE}
 ## As previously noted, a subset of media use columns, but but first, I changed the name
@@ -630,7 +615,7 @@ knitr::include_graphics(here( "final draft graphics", "Radio By State.png"))
 
 ```
 
-### Internet use is highest in Federal Captial Territory, the capital of Nigera, followed by Borno State 
+### Internet use is highest in Federal Capital Territory, the capital of Nigeria, followed by Borno State
 
 ```{r warning=FALSE, eval=TRUE}
 
