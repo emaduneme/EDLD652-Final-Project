@@ -2,6 +2,7 @@
 title: "Emmanuel Maduneme"
 output: 
   flexdashboard::flex_dashboard:
+   
     theme: 
       version: 4
       bootswatch: litera
@@ -32,7 +33,7 @@ selected_afrob <-  selected_afrob %>%
   mutate(states = REGION)
 ```
 
-# Background {data-orientation="rows" data-icon="fa-info-circle"}
+# Background {data-orientation="rows" data-icon="fa-info-circle"} 
 
 ## About Data {.sidebar}
 
@@ -48,7 +49,7 @@ The `afrobarometer_ngr` data is a publicly available data set from [**Afrobarome
 knitr::include_graphics(here( "final draft graphics", "perception_image.png"))
 ```
 
-# Trust in Institutions {data-icon="ion-android-checkmark-circle"}
+# First Iteration {data-navmenu='Trust in Institutions'} 
 
 ```{r, trust, warning=FALSE, include=FALSE}
 ## Recode Variables Trust
@@ -142,20 +143,66 @@ percent <- function(x, digits = 2, format = "f", ...) {      # Create user-defin
 
 The plots in this page explored the level of trust Nigerians had in different institutions. Overall, Religious and Traditional leaders are the most trusted group of people. The National Assembly, which is the main legislative body in the country as well as the Police were the least trusted groups in Nigeria.
 
-**Trust in President/ Religious Leaders by State**
 
-Religious leaders are the most trusted groups in Nigeria. The map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
+**First Iteration**
 
-## Column {data-width="300"}
+This is the first stacked plot that I made but the x-axis was not in percent. I also had gridlines behind the plot that made it a little to cumbersome. 
 
+
+ 
+ 
+
+## 
+### First Iteration
+
+```{r}
+knitr::include_graphics(here( "final draft graphics", "Trust_Old plot.png"))
+```
+
+# Final Plot {data-navmenu='Trust in Institutions'} 
+
+## Trust {.sidebar}
+
+**Overall Trust**
+
+The plots in this page explored the level of trust Nigerians had in different institutions. Overall, Religious and Traditional leaders are the most trusted group of people. The National Assembly, which is the main legislative body in the country as well as the Police were the least trusted groups in Nigeria.
+
+**Final Overall Trust**
+
+I fixed all the issues pointed out in the first iteration. 
+
+## 
 ### Nigerian Trust Religious and Traditional Leaders more
 
 ```{r, warning=FALSE}
-trust_plot
+trust_plot 
+
 
 ```
 
-## Column {data-width="300"}
+
+# By State {data-navmenu='Trust in Institutions'} 
+
+## Trust By State {.sidebar}
+
+**First Iteration**
+
+Next, I wanted to plot the trust scores for the President and religious leaders who were the most trusted by states. So at first, I plotted a non-interactive map but I needed to make it interactive.
+
+
+**Trust in President/ Religious Leaders by State**
+
+Religious leaders are the most trusted groups in Nigeria. The map showing states that trust the president the most and the least. As is evident, States in the North (Islamic Majority) are more trusting of the President and Religious Leaders compared to the states in the South (Christian Majority).
+The map showing states that trust the president the most and the least. I finally used the `tmap` package which helped plot the map interactively. It was then easier to plot the other map. 
+
+## Column {data-width="300"} {.tabset}
+
+### Map Iteration 
+
+```{r}
+knitr::include_graphics(here("final draft graphics", "trust_president.png"))
+```
+
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## trust by States
@@ -292,13 +339,6 @@ Trust_Religious_Leaders %>%
   tm_layout(legend.outside = TRUE)
 ```
 
-# Issue Perceptions {data-icon="ion-ios-briefcase-outline"}
-
-## \## Issue Perceptions {.sidebar}
-
-**Perception of Varied Issues in Nigeria**
-
-The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
 
 ```{r,  include=FALSE}
 ## First I created a subset of data that included all the issues interest.
@@ -388,21 +428,71 @@ layout(xaxis = list(categoryorder = "total descending",
       
 ```
 
-## Column {data-width="400"}
+# First Issue Iteration  {data-navmenu=Issues} 
 
-### **Nigerians say the Government is Handling Basic Health Service better and Job Creation worse**
+```{r, include=FALSE, eval=TRUE}
+issue_ratings_old <- j %>% 
+  group_by(Issues) %>% 
+  ggplot(aes(reorder(Issues, avg_score), avg_score)) +
+ geom_col(aes(fill = Issues),size=4) + 
+   ylim(0.0, 3.0) +
+  coord_flip() +
+  geom_text(aes(label = avg_score),  hjust = -0.5) +
+  scale_fill_manual(values = c("#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888")) +
+  theme_classic() +
+  theme(panel.grid.major.x = element_line(color = "grey90",
+size = 0.5,
+linetype = 1)) +
+  labs(title = "Average Ratings of How Well the Federal Govt is Handling:",
+    x = "", 
+          y = "Average Ratings (1 = Very Badly, 4 = Very Well)" ) +
+   theme(legend.position="none",
+        plot.title=element_text(family="Times", face="bold", size=10),
+        axis.title.x  = element_text(family = "Comic Sans MS", face="bold", size=10),
+        axis.title.y  = element_text(family = "Times New Roman", face="bold"))
+
+```
+
+## Issue Perceptions {.sidebar} 
+
+**Perception of Varied Issues in Nigeria**
+
+The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
+
+**First Iteration** 
+I initially had a non-interactive bar plot with trauncated x-axis and poor color choices. 
+
+ 
+
+##  {data-height="400"}
+
+### **First Iteration** 
 
 ```{r}
+issue_ratings_old
+```
+
+# Final Plot {data-navmenu=Issues}
+
+## Issue Perceptions {.sidebar} 
+
+**Perception of Varied Issues in Nigeria**
+
+The plot explored Nigerian's evaluation of different pressing national issues. Nigerians rated the Federal Government relatively high in providing basic Health services and their handling of education. The lowest assessments were on electricity and job creation. Overall, on a scale of "1 to 5", the ratings were quite low.
+
+
+**Final Plot** 
+I then used `plotly` to make the plot more interactive with a true scale of the axis. 
+
+## 
+
+### **Nigerians say the Government is Handling Basic Health Service better and Job Creation worse** 
+
+```{r, out.width='90%'}
 issue_ratings_plotly
 ```
 
-# General Media Use {data-icon="ion-android-desktop"}
 
-## Trust {.sidebar}
-
-**General Media Use**
-
-Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers.
 
 ```{r,warning=FALSE, include=FALSE}
 ## As previously noted, a subset of media use columns, but but first, I changed the name
@@ -558,16 +648,25 @@ media_by_state <- full_set2 %>%
 
 ```
 
-## Row {data-height="300"}
+# Final Plot {data-navmenu='Media Use'}
 
-### Radio Remains the Main Source of News in Nigeria
+## Media Use {.sidebar}
+
+**General Media Use**
+
+Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers.
+
+
+
+## 
+### Radio Remains the Main Source of News in Nigeria 
 
 ```{r warning=FALSE}
 media_by_state
 
 ```
 
-```{r, warning=FALSE, echo=TRUE, eval=FALSE, include=FALSE}
+```{r, warning=FALSE, echo=TRUE, eval=FALSE, include=FALSE, out.width='90%'}
 ## Just for Tableau: Attaching geographic data to media usage in order to create graphs on Tableau
 
 
@@ -605,19 +704,70 @@ class(tablaeu2$NAME_1)
 
 ```
 
-## Column {data-width="400"}
+# First Iteration of Treemap{data-navmenu='Media Use'}
 
-### Ogun State has the highest radio use, followed by Kaduna and Gombe State
+## Trust {.sidebar}
 
-```{r warning=FALSE, eval=TRUE}
+**General Media Use**
+
+Nigerians still rely more on radio and Television as their main sources of news. In Nigeria, it is often a common phrase in the past that **radio is king**. That phrase still holds true in 2022, followed by Television and Newspapers.
+
+**First Iteration of Treemap**
+
+I tried making it in R but it wa not coming out really good. So I opted to use another service, Tableau to create the treemap of media use by different state. 
+
+## Treemap First
+
+### First Iteration
+
+```{r}
+ 
+treemap_media <-  full_set %>% 
+  mutate(NAME_1 = as.character(state)) %>% 
+      select(11, 6:10)
+  
+
+treemap(treemap_media,
+            index="NAME_1",
+            vSize="Radio",
+            type="index",
+           border.col="white",  
+           border.lwds=c(1,1)
+            )
+
+```
+
+# Final Treemaps (Radio Use) {data-navmenu='Media Use'}
+
+## Media Use {.sidebar}
+
+**Final Treemap**
+
+I used Tableau, a data visualization tool to create the two treemaps. 
+
+## tableau 
+
+### Ogun State has the highest radio use, followed by Kaduna and Gombe State 
+
+```{r warning=FALSE, eval=TRUE, out.width='50%'}
 
 knitr::include_graphics(here( "final draft graphics", "Radio By State.png"))
 
 ```
 
+# Final Treemap (Internet Use) {data-navmenu='Media Use'}
+
+## Media Use {.sidebar}
+
+**Final Treemap**
+
+I used Tableau, a data visualization tool to create the two treemaps. 
+
+## tableau 
+
 ### Internet use is highest in Federal Capital Territory, the capital of Nigeria, followed by Borno State
 
-```{r warning=FALSE, eval=TRUE}
+```{r warning=FALSE, eval=TRUE, out.width='50%'}
 
 knitr::include_graphics(here( "final draft graphics", "internet use treemap.png"))
 
